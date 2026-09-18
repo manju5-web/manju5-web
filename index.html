@@ -2,7 +2,9 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Nuestro tesoro</title>
@@ -16,104 +18,379 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Georgia, serif;
-            background: #f3e5c8;
-            color: #4a3526;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: Georgia, serif;
+
+            background: #ead8b7;
+
+            color: #4b3525;
 
             text-align: center;
         }
 
-        .container {
-            width: 90%;
-            max-width: 700px;
-            padding: 40px 25px;
+        /* PANTALLAS */
+
+        .pantalla {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
         }
 
-        .heart {
-            font-size: 60px;
+        .contenido {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* INICIO */
+
+        .corazon {
+            font-size: 70px;
+
             margin-bottom: 10px;
         }
 
         h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: 50px;
+
+            margin: 10px 0;
         }
 
-        p {
-            font-size: 20px;
-            line-height: 1.6;
-        }
+        .texto-inicio {
+            font-size: 21px;
 
-        .subtitle {
-            margin-bottom: 35px;
+            line-height: 1.7;
+
+            margin: 25px auto 40px;
+
+            max-width: 600px;
         }
 
         button {
-            background: #6d4c41;
-            color: white;
             border: none;
-            padding: 15px 35px;
+
+            background: #68483a;
+
+            color: white;
+
+            padding: 15px 30px;
+
             border-radius: 30px;
 
             font-size: 18px;
+
             font-family: Georgia, serif;
 
             cursor: pointer;
+
+            transition: 0.2s;
         }
 
         button:hover {
             transform: scale(1.05);
         }
 
-        .hidden {
+        /* MAPA */
+
+        #mapa {
             display: none;
         }
 
-        .message {
-            margin-top: 30px;
-            font-size: 21px;
+        .titulo-mapa {
+            font-size: 40px;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitulo-mapa {
+            font-size: 18px;
+
+            margin-bottom: 40px;
+        }
+
+        .mapa {
+            position: relative;
+
+            width: 100%;
+
+            max-width: 700px;
+
+            height: 500px;
+
+            margin: auto;
+
+            background: #d8bd8e;
+
+            border: 4px solid #806044;
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* CAMINO */
+
+        .camino {
+            position: absolute;
+
+            width: 65%;
+
+            height: 4px;
+
+            background: #806044;
+
+            top: 50%;
+
+            left: 18%;
+
+            transform: rotate(-20deg);
+        }
+
+        /* PUNTOS DEL MAPA */
+
+        .punto {
+            position: absolute;
+
+            width: 90px;
+
+            height: 90px;
+
+            border-radius: 50%;
+
+            border: 3px solid #806044;
+
+            background: #ead8b7;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 35px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .punto:hover {
+            transform: scale(1.1);
+        }
+
+        .punto-bloqueado {
+            opacity: 0.45;
+
+            cursor: not-allowed;
+        }
+
+        .punto1 {
+            left: 10%;
+
+            top: 55%;
+        }
+
+        .punto2 {
+            left: 32%;
+
+            top: 35%;
+        }
+
+        .punto3 {
+            left: 55%;
+
+            top: 55%;
+        }
+
+        .punto4 {
+            left: 75%;
+
+            top: 25%;
+        }
+
+        .bandera {
+            position: absolute;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            font-size: 50px;
+        }
+
+        /* OCULTAR */
+
+        .oculto {
+            display: none;
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <div class="heart">♡</div>
+    <!-- ========================= -->
+    <!-- PANTALLA DE INICIO -->
+    <!-- ========================= -->
 
-        <h1>Nuestro tesoro</h1>
+    <section id="inicio" class="pantalla">
 
-        <p class="subtitle">
-            Hay cuatro canciones escondidas en nuestra historia.
-            <br>
-            ¿Estás listo para encontrarlas?
-        </p>
+        <div class="contenido">
 
-        <button onclick="comenzar()">
-            Comenzar la aventura
-        </button>
+            <div class="corazon">
+                ♡
+            </div>
 
-        <div id="mensaje" class="message hidden">
-            🗺️ Tu aventura está a punto de comenzar...
+            <h1>
+                Nuestro tesoro
+            </h1>
+
+            <p class="texto-inicio">
+
+                Hay cuatro canciones escondidas
+                dentro de nuestra historia.
+
+                <br><br>
+
+                Para encontrar el tesoro tendrás
+                que recordar algunos de nuestros
+                momentos.
+
+                <br><br>
+
+                ¿Estás listo para comenzar?
+
+            </p>
+
+            <button onclick="comenzar()">
+
+                Comenzar la aventura
+
+            </button>
+
         </div>
 
-    </div>
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- MAPA -->
+    <!-- ========================= -->
+
+    <section id="mapa" class="pantalla">
+
+        <div class="contenido">
+
+            <h2 class="titulo-mapa">
+
+                🗺️ Nuestro mapa
+
+            </h2>
+
+            <p class="subtitulo-mapa">
+
+                Cuatro canciones.
+                Cuatro recuerdos.
+                Un tesoro.
+
+            </p>
+
+
+            <div class="mapa">
+
+                <div class="camino"></div>
+
+
+                <!-- PISTA 1 -->
+
+                <div
+                    class="punto punto1"
+                    onclick="abrirPista(1)"
+                >
+
+                    🎵
+
+                </div>
+
+
+                <!-- PISTA 2 -->
+
+                <div
+                    class="punto punto2 punto-bloqueado"
+                    id="punto2"
+                >
+
+                    🔒
+
+                </div>
+
+
+                <!-- PISTA 3 -->
+
+                <div
+                    class="punto punto3 punto-bloqueado"
+                    id="punto3"
+                >
+
+                    🔒
+
+                </div>
+
+
+                <!-- PISTA 4 -->
+
+                <div
+                    class="punto punto4 punto-bloqueado"
+                    id="punto4"
+                >
+
+                    🔒
+
+                </div>
+
+
+                <div class="bandera">
+
+                    🏴
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 
     <script>
 
         function comenzar() {
 
-            document.getElementById("mensaje").classList.remove("hidden");
+            document.getElementById("inicio").style.display = "none";
+
+            document.getElementById("mapa").style.display = "flex";
+
+        }
+
+
+        function abrirPista(numero) {
+
+            alert(
+                "¡Has encontrado la pista " + numero + "!"
+            );
 
         }
 
     </script>
+
 
 </body>
 
