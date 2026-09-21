@@ -1,397 +1,1559 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nuestro tesoro</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-
-            font-family: Georgia, serif;
-
-            background: #ead8b7;
-
-            color: #4b3525;
-
-            text-align: center;
-        }
-
-        /* PANTALLAS */
-
-        .pantalla {
-            min-height: 100vh;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            padding: 30px;
-        }
-
-        .contenido {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        /* INICIO */
-
-        .corazon {
-            font-size: 70px;
-
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 50px;
-
-            margin: 10px 0;
-        }
-
-        .texto-inicio {
-            font-size: 21px;
-
-            line-height: 1.7;
-
-            margin: 25px auto 40px;
-
-            max-width: 600px;
-        }
-
-        button {
-            border: none;
-
-            background: #68483a;
-
-            color: white;
-
-            padding: 15px 30px;
-
-            border-radius: 30px;
-
-            font-size: 18px;
-
-            font-family: Georgia, serif;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        /* MAPA */
-
-        #mapa {
-            display: none;
-        }
-
-        .titulo-mapa {
-            font-size: 40px;
-
-            margin-bottom: 10px;
-        }
-
-        .subtitulo-mapa {
-            font-size: 18px;
-
-            margin-bottom: 40px;
-        }
-
-        .mapa {
-            position: relative;
-
-            width: 100%;
-
-            max-width: 700px;
-
-            height: 500px;
-
-            margin: auto;
-
-            background: #d8bd8e;
-
-            border: 4px solid #806044;
-
-            border-radius: 20px;
-
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        /* CAMINO */
-
-        .camino {
-            position: absolute;
-
-            width: 65%;
-
-            height: 4px;
-
-            background: #806044;
-
-            top: 50%;
-
-            left: 18%;
-
-            transform: rotate(-20deg);
-        }
-
-        /* PUNTOS DEL MAPA */
-
-        .punto {
-            position: absolute;
-
-            width: 90px;
-
-            height: 90px;
-
-            border-radius: 50%;
-
-            border: 3px solid #806044;
-
-            background: #ead8b7;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            font-size: 35px;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        .punto:hover {
-            transform: scale(1.1);
-        }
-
-        .punto-bloqueado {
-            opacity: 0.45;
-
-            cursor: not-allowed;
-        }
-
-        .punto1 {
-            left: 10%;
-
-            top: 55%;
-        }
-
-        .punto2 {
-            left: 32%;
-
-            top: 35%;
-        }
-
-        .punto3 {
-            left: 55%;
-
-            top: 55%;
-        }
-
-        .punto4 {
-            left: 75%;
-
-            top: 25%;
-        }
-
-        .bandera {
-            position: absolute;
-
-            right: 20px;
-
-            bottom: 20px;
-
-            font-size: 50px;
-        }
-
-        /* OCULTAR */
-
-        .oculto {
-            display: none;
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nuestro Tesoro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#050b18;
+    color:#f7edc9;
+    font-family:'Montserrat',sans-serif;
+    min-height:100vh;
+}
+
+.pantalla{
+    display:none;
+    min-height:100vh;
+    padding:30px 20px;
+}
+
+.pantalla.activa{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================
+   PÁGINA DE BIENVENIDA
+========================= */
+
+.bienvenida{
+    text-align:center;
+    max-width:650px;
+}
+
+.sol{
+    width:110px;
+    height:110px;
+    margin:0 auto 25px;
+    border-radius:50%;
+    background:#f5c84c;
+    box-shadow:
+        0 0 25px #f5c84c,
+        0 0 70px rgba(245,200,76,.35);
+}
+
+.titulo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(52px,12vw,90px);
+    font-weight:600;
+    letter-spacing:2px;
+    color:#f7edc9;
+}
+
+.subtitulo{
+    margin-top:10px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:27px;
+    color:#f5c84c;
+}
+
+.intro{
+    margin:30px auto;
+    max-width:520px;
+    line-height:1.8;
+    color:#d7d9df;
+    font-size:15px;
+}
+
+.boton{
+    border:1px solid #f5c84c;
+    background:transparent;
+    color:#f5c84c;
+    padding:15px 28px;
+    border-radius:30px;
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.boton:hover{
+    background:#f5c84c;
+    color:#050b18;
+}
+
+/* =========================
+   MAPA
+========================= */
+
+.mapa-pantalla{
+    justify-content:flex-start !important;
+    padding-top:25px;
+}
+
+.mapa-titulo{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.mapa-titulo h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;
+    color:#f5c84c;
+}
+
+.mapa-titulo p{
+    color:#aeb6c6;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.mapa-contenedor{
+    width:min(950px,100%);
+    margin:10px auto;
+    position:relative;
+}
+
+svg{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* estaciones */
+
+.estacion{
+    cursor:pointer;
+    transition:.3s;
+}
+
+.estacion:hover{
+    transform:scale(1.05);
+    transform-origin:center;
+}
+
+.estacion-bloqueada{
+    opacity:.28;
+    cursor:not-allowed;
+}
+
+.estacion-icono{
+    fill:#f5c84c;
+    stroke:#050b18;
+    stroke-width:3;
+}
+
+.estacion-bloqueada .estacion-icono{
+    fill:#6e7480;
+}
+
+.estacion-numero{
+    fill:#050b18;
+    font-family:'Montserrat',sans-serif;
+    font-weight:600;
+    font-size:17px;
+}
+
+.estacion-bloqueada .estacion-numero{
+    fill:#202735;
+}
+
+.mensaje-mapa{
+    text-align:center;
+    color:#8f98aa;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* =========================
+   PISTAS
+========================= */
+
+.pista-contenedor{
+    width:min(650px,100%);
+    text-align:center;
+}
+
+.numero-pista{
+    color:#f5c84c;
+    font-size:12px;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.pista-titulo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.marco-media{
+    width:100%;
+    min-height:210px;
+    border:1px solid #263652;
+    background:#091326;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#667187;
+    margin-bottom:25px;
+    border-radius:8px;
+}
+
+.pista-texto{
+    line-height:1.9;
+    color:#d9dce3;
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px;
+    margin-bottom:25px;
+}
+
+.opciones{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.opcion{
+    padding:15px;
+    background:#091326;
+    border:1px solid #263652;
+    color:#f7edc9;
+    border-radius:6px;
+    cursor:pointer;
+    font-family:'Montserrat',sans-serif;
+    transition:.3s;
+}
+
+.opcion:hover{
+    border-color:#f5c84c;
+}
+
+.opcion:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+}
+
+.intentos{
+    font-size:12px;
+    color:#788398;
+    margin-bottom:15px;
+}
+
+.mensaje{
+    min-height:30px;
+    line-height:1.6;
+    margin-bottom:15px;
+    color:#f5c84c;
+}
+
+/* =========================
+   ÉXITO
+========================= */
+
+.exito{
+    text-align:center;
+    max-width:550px;
+}
+
+.exito .estrella{
+    font-size:50px;
+    color:#f5c84c;
+    margin-bottom:20px;
+}
+
+.exito h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.exito p{
+    line-height:1.8;
+    color:#d4d8e1;
+    margin-bottom:25px;
+}
+
+.bolsita{
+    border:1px solid #f5c84c;
+    padding:20px;
+    margin:20px 0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    color:#f5c84c;
+}
+
+.spotify{
+    display:inline-block;
+    margin:8px;
+    padding:12px 20px;
+    border:1px solid #53647e;
+    border-radius:25px;
+    color:#f7edc9;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* =========================
+   TESORO FINAL
+========================= */
+
+.final{
+    text-align:center;
+    max-width:700px;
+}
+
+.final .luna{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#f7edc9;
+    box-shadow:0 0 40px rgba(247,237,201,.35);
+    margin:0 auto 25px;
+}
+
+.final h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:58px;
+    color:#f5c84c;
+    margin-bottom:20px;
+}
+
+.poema{
+    border-top:1px solid #273653;
+    border-bottom:1px solid #273653;
+    padding:30px 15px;
+    margin:25px 0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    line-height:1.8;
+    color:#e2e4e9;
+}
+
+.final-mensaje{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    line-height:1.7;
+    color:#f7edc9;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .pantalla{
+        padding:25px 16px;
+    }
+
+    .titulo{
+        font-size:58px;
+    }
+
+    .subtitulo{
+        font-size:23px;
+    }
+
+    .mapa-titulo h1{
+        font-size:35px;
+    }
+
+    .opciones{
+        grid-template-columns:1fr;
+    }
+
+    .pista-titulo{
+        font-size:40px;
+    }
+
+    .pista-texto{
+        font-size:19px;
+    }
+
+    .final h1{
+        font-size:48px;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     BIENVENIDA
+========================= -->
 
-    <!-- ========================= -->
-    <!-- PANTALLA DE INICIO -->
-    <!-- ========================= -->
+<section id="inicio" class="pantalla activa">
 
-    <section id="inicio" class="pantalla">
+    <div class="bienvenida">
 
-        <div class="contenido">
+        <div class="sol"></div>
 
-            <div class="corazon">
-                ♡
-            </div>
+        <h1 class="titulo">Nuestro tesoro</h1>
 
-            <h1>
-                Nuestro tesoro
-            </h1>
-
-            <p class="texto-inicio">
-
-                Hay cuatro canciones escondidas
-                dentro de nuestra historia.
-
-                <br><br>
-
-                Para encontrar el tesoro tendrás
-                que recordar algunos de nuestros
-                momentos.
-
-                <br><br>
-
-                ¿Estás listo para comenzar?
-
-            </p>
-
-            <button onclick="comenzar()">
-
-                Comenzar la aventura
-
-            </button>
-
+        <div class="subtitulo">
+            Una aventura para los dos
         </div>
 
-    </section>
+        <p class="intro">
+            Hay recuerdos que no caben en una fotografía.
+            Canciones que nos llevan de vuelta a un momento,
+            un lugar o una emoción.
+            <br><br>
+            Hoy tendrás que encontrar cinco de ellas.
+            Algunas estarán escondidas en el mapa.
+            La última tendrás que encontrarla tú.
+        </p>
+
+        <button class="boton" onclick="irA('mapa')">
+            Comenzar la aventura
+        </button>
+
+    </div>
+
+</section>
 
 
-    <!-- ========================= -->
-    <!-- MAPA -->
-    <!-- ========================= -->
+<!-- =========================
+     MAPA
+========================= -->
 
-    <section id="mapa" class="pantalla">
+<section id="mapa" class="pantalla mapa-pantalla">
 
-        <div class="contenido">
+    <div class="mapa-titulo">
 
-            <h2 class="titulo-mapa">
+        <h1>El mapa de nosotros</h1>
 
-                🗺️ Nuestro mapa
+        <p>
+            DONDE EL DÍA ENCUENTRA A LA NOCHE
+        </p>
 
-            </h2>
+    </div>
 
-            <p class="subtitulo-mapa">
+    <div class="mapa-contenedor">
 
-                Cuatro canciones.
-                Cuatro recuerdos.
-                Un tesoro.
+        <svg viewBox="0 0 900 650"
+             xmlns="http://www.w3.org/2000/svg">
 
-            </p>
+            <!-- FONDO -->
 
+            <defs>
 
-            <div class="mapa">
+                <linearGradient id="cielo"
+                                x1="0"
+                                y1="0"
+                                x2="0"
+                                y2="1">
 
-                <div class="camino"></div>
+                    <stop offset="0%"
+                          stop-color="#07152f"/>
 
+                    <stop offset="55%"
+                          stop-color="#0c2850"/>
 
-                <!-- PISTA 1 -->
+                    <stop offset="100%"
+                          stop-color="#f2c84b"/>
 
-                <div
-                    class="punto punto1"
-                    onclick="abrirPista(1)"
-                >
+                </linearGradient>
 
-                    🎵
+                <radialGradient id="brilloSol"
+                                cx="50%"
+                                cy="50%">
 
-                </div>
+                    <stop offset="0%"
+                          stop-color="#fff1a8"/>
 
+                    <stop offset="100%"
+                          stop-color="#f5c84c"/>
 
-                <!-- PISTA 2 -->
+                </radialGradient>
 
-                <div
-                    class="punto punto2 punto-bloqueado"
-                    id="punto2"
-                >
+            </defs>
 
-                    🔒
-
-                </div>
-
-
-                <!-- PISTA 3 -->
-
-                <div
-                    class="punto punto3 punto-bloqueado"
-                    id="punto3"
-                >
-
-                    🔒
-
-                </div>
+            <rect width="900"
+                  height="650"
+                  rx="20"
+                  fill="url(#cielo)"/>
 
 
-                <!-- PISTA 4 -->
+            <!-- ESTRELLAS -->
 
-                <div
-                    class="punto punto4 punto-bloqueado"
-                    id="punto4"
-                >
+            <g fill="#f7edc9">
 
-                    🔒
+                <circle cx="90" cy="80" r="2"/>
+                <circle cx="140" cy="130" r="3"/>
+                <circle cx="210" cy="70" r="2"/>
+                <circle cx="280" cy="115" r="2"/>
+                <circle cx="350" cy="60" r="3"/>
+                <circle cx="420" cy="105" r="2"/>
+                <circle cx="490" cy="70" r="2"/>
+                <circle cx="560" cy="125" r="3"/>
+                <circle cx="640" cy="65" r="2"/>
+                <circle cx="710" cy="115" r="2"/>
+                <circle cx="790" cy="75" r="3"/>
+                <circle cx="840" cy="135" r="2"/>
 
-                </div>
-
-
-                <div class="bandera">
-
-                    🏴
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+            </g>
 
 
-    <script>
+            <!-- CONSTELACIÓN -->
 
-        function comenzar() {
+            <g stroke="#f7edc9"
+               stroke-width="1"
+               opacity=".45">
 
-            document.getElementById("inicio").style.display = "none";
+                <line x1="110" y1="180" x2="160" y2="145"/>
+                <line x1="160" y1="145" x2="220" y2="180"/>
+                <line x1="220" y1="180" x2="270" y2="145"/>
 
-            document.getElementById("mapa").style.display = "flex";
-
-        }
+            </g>
 
 
-        function abrirPista(numero) {
+            <!-- LUNA -->
 
-            alert(
-                "¡Has encontrado la pista " + numero + "!"
+            <circle cx="770"
+                    cy="170"
+                    r="55"
+                    fill="#f7edc9"/>
+
+            <circle cx="795"
+                    cy="150"
+                    r="55"
+                    fill="#091a36"/>
+
+
+            <!-- SOL -->
+
+            <circle cx="125"
+                    cy="500"
+                    r="65"
+                    fill="url(#brilloSol)"/>
+
+            <g stroke="#f5c84c"
+               stroke-width="5"
+               opacity=".8">
+
+                <line x1="125" y1="410" x2="125" y2="385"/>
+                <line x1="125" y1="590" x2="125" y2="615"/>
+                <line x1="35" y1="500" x2="10" y2="500"/>
+                <line x1="215" y1="500" x2="240" y2="500"/>
+
+            </g>
+
+
+            <!-- MONTAÑAS -->
+
+            <path d="M0 430
+                     L120 300
+                     L190 390
+                     L300 260
+                     L400 390
+                     L510 280
+                     L610 390
+                     L720 250
+                     L900 430
+                     L900 650
+                     L0 650 Z"
+                  fill="#06101f"
+                  opacity=".9"/>
+
+
+            <!-- MONTAÑAS SECUNDARIAS -->
+
+            <path d="M0 490
+                     L170 370
+                     L280 450
+                     L420 340
+                     L560 455
+                     L690 350
+                     L900 480
+                     L900 650
+                     L0 650 Z"
+                  fill="#0a1c32"/>
+
+
+            <!-- CAMINO ORGÁNICO -->
+
+            <path d="M130 540
+                     C220 500 220 570 315 520
+                     C400 475 400 430 475 420
+                     C550 410 575 470 640 430
+                     C710 385 720 320 770 250"
+
+                  fill="none"
+                  stroke="#f5c84c"
+                  stroke-width="5"
+                  stroke-linecap="round"
+                  stroke-dasharray="3 14"
+                  opacity=".9"/>
+
+
+            <!-- ESTACIÓN 1 -->
+
+            <g id="estacion1"
+               class="estacion"
+               onclick="tocarEstacion(1)">
+
+                <circle cx="150"
+                        cy="525"
+                        r="34"
+                        fill="#f5c84c"
+                        stroke="#050b18"
+                        stroke-width="5"/>
+
+                <text x="150"
+                      y="532"
+                      text-anchor="middle"
+                      class="estacion-numero">
+                    1
+                </text>
+
+                <text x="150"
+                      y="580"
+                      text-anchor="middle"
+                      fill="#f7edc9"
+                      font-family="Cormorant Garamond"
+                      font-size="21">
+                    El camino
+                </text>
+
+            </g>
+
+
+            <!-- ESTACIÓN 2 -->
+
+            <g id="estacion2"
+               class="estacion estacion-bloqueada"
+               onclick="tocarEstacion(2)">
+
+                <path d="M320 480
+                         L340 450
+                         L360 480
+                         L350 515
+                         L330 515 Z"
+                      class="estacion-icono"/>
+
+                <circle cx="340"
+                        cy="485"
+                        r="19"
+                        fill="#f5c84c"/>
+
+                <text x="340"
+                      y="491"
+                      text-anchor="middle"
+                      class="estacion-numero">
+                    2
+                </text>
+
+                <text x="340"
+                      y="545"
+                      text-anchor="middle"
+                      fill="#f7edc9"
+                      font-family="Cormorant Garamond"
+                      font-size="21">
+                    El reflejo
+                </text>
+
+            </g>
+
+
+            <!-- ESTACIÓN 3 -->
+
+            <g id="estacion3"
+               class="estacion estacion-bloqueada"
+               onclick="tocarEstacion(3)">
+
+                <path d="M490 390
+                         L520 365
+                         L550 390
+                         L520 420 Z"
+                      fill="#f5c84c"
+                      stroke="#050b18"
+                      stroke-width="4"/>
+
+                <text x="520"
+                      y="397"
+                      text-anchor="middle"
+                      class="estacion-numero">
+                    3
+                </text>
+
+                <text x="520"
+                      y="350"
+                      text-anchor="middle"
+                      fill="#f7edc9"
+                      font-family="Cormorant Garamond"
+                      font-size="21">
+                    Diciembre
+                </text>
+
+            </g>
+
+
+            <!-- ESTACIÓN 4 -->
+
+            <g id="estacion4"
+               class="estacion estacion-bloqueada"
+               onclick="tocarEstacion(4)">
+
+                <path d="M665 350
+                         L690 315
+                         L715 350
+                         L705 385
+                         L675 385 Z"
+                      class="estacion-icono"/>
+
+                <circle cx="690"
+                        cy="350"
+                        r="19"
+                        fill="#f5c84c"/>
+
+                <text x="690"
+                      y="356"
+                      text-anchor="middle"
+                      class="estacion-numero">
+                    4
+                </text>
+
+                <text x="690"
+                      y="405"
+                      text-anchor="middle"
+                      fill="#f7edc9"
+                      font-family="Cormorant Garamond"
+                      font-size="21">
+                    Donde lloré
+                </text>
+
+            </g>
+
+
+            <!-- ROSA DE LOS VIENTOS -->
+
+            <g transform="translate(735 520)"
+               opacity=".8">
+
+                <circle r="55"
+                        fill="none"
+                        stroke="#f5c84c"
+                        stroke-width="1"/>
+
+                <path d="M0 -45 L7 0 L0 45 L-7 0 Z"
+                      fill="#f5c84c"/>
+
+                <path d="M-45 0 L0 7 L45 0 L0 -7 Z"
+                      fill="#f7edc9"/>
+
+                <text x="0"
+                      y="-63"
+                      text-anchor="middle"
+                      fill="#f5c84c"
+                      font-size="15">
+                    N
+                </text>
+
+                <text x="0"
+                      y="78"
+                      text-anchor="middle"
+                      fill="#f5c84c"
+                      font-size="15">
+                    S
+                </text>
+
+            </g>
+
+        </svg>
+
+    </div>
+
+    <p class="mensaje-mapa">
+        El mapa te mostrará el camino. Las historias tendrás que descubrirlas.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     PISTA 1
+========================= -->
+
+<section id="pista1" class="pantalla">
+
+<div class="pista-contenedor">
+
+    <div class="numero-pista">
+        ESTACIÓN I
+    </div>
+
+    <h1 class="pista-titulo">
+        El camino
+    </h1>
+
+    <div class="marco-media">
+        AQUÍ PUEDES PONER UNA FOTO O VIDEO
+    </div>
+
+    <p class="pista-texto">
+        No tengo una sola dirección.
+        A veces aparezco cuando dejamos atrás la ciudad,
+        otras cuando el camino parece no tener final.
+        <br><br>
+        He estado presente entre ventanas abajo,
+        voces desafinadas y canciones cantadas demasiado fuerte.
+        No fui parte de un solo viaje.
+        Fui parte de muchos.
+        <br><br>
+        Hay canciones que uno escucha.
+        Y hay canciones que terminan convirtiéndose
+        en parte del camino.
+        <br><br>
+        ¿Cuál de estas canciones soy?
+    </p>
+
+    <div id="opciones1" class="opciones"></div>
+
+    <div id="intentos1" class="intentos"></div>
+
+    <div id="mensaje1" class="mensaje"></div>
+
+    <button class="boton"
+            onclick="volverAlMapa()">
+        Volver al mapa
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PISTA 2
+========================= -->
+
+<section id="pista2" class="pantalla">
+
+<div class="pista-contenedor">
+
+    <div class="numero-pista">
+        ESTACIÓN II
+    </div>
+
+    <h1 class="pista-titulo">
+        El reflejo
+    </h1>
+
+    <div class="marco-media">
+        AQUÍ PUEDES PONER LA FOTO DEL ESPEJO
+    </div>
+
+    <p class="pista-texto">
+        Hay recuerdos que no necesitan una fecha para quedarse.
+        <br><br>
+        Solo necesito una habitación,
+        un espejo,
+        una gorra llevada de una manera muy específica
+        y a la persona que estaba frente a mí.
+        <br><br>
+        Tal vez él no sabía que aquel momento
+        terminaría guardando un significado diferente
+        dentro de mí.
+        <br><br>
+        Hay una canción que cuando aparece
+        me hace pensar en todo lo que siento
+        cuando estoy contigo.
+        <br><br>
+        Encuéntrala.
+    </p>
+
+    <div id="opciones2" class="opciones"></div>
+
+    <div id="intentos2" class="intentos"></div>
+
+    <div id="mensaje2" class="mensaje"></div>
+
+    <button class="boton"
+            onclick="volverAlMapa()">
+        Volver al mapa
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PISTA 3
+========================= -->
+
+<section id="pista3" class="pantalla">
+
+<div class="pista-contenedor">
+
+    <div class="numero-pista">
+        ESTACIÓN III
+    </div>
+
+    <h1 class="pista-titulo">
+        Diciembre
+    </h1>
+
+    <div class="marco-media">
+        AQUÍ PUEDES PONER FOTO O VIDEO DEL CONCIERTO
+    </div>
+
+    <p class="pista-texto">
+        Diciembre.
+        <br><br>
+        Luces.
+        Miles de personas cantando al mismo tiempo.
+        Nuestro primer concierto juntos.
+        <br><br>
+        Y entre todo ese ruido hubo un momento
+        que solamente escuché yo.
+        <br><br>
+        Alguien se acercó a mi oído
+        y me dijo cuatro palabras
+        que todavía recuerdo:
+        <br><br>
+        <strong>“Eres el amor de mi vida.”</strong>
+        <br><br>
+        Ahora dime...
+        ¿qué canción estaba sonando
+        mientras empezábamos a entender
+        que aquello era mucho más que un concierto?
+    </p>
+
+    <div id="opciones3" class="opciones"></div>
+
+    <div id="intentos3" class="intentos"></div>
+
+    <div id="mensaje3" class="mensaje"></div>
+
+    <button class="boton"
+            onclick="volverAlMapa()">
+        Volver al mapa
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PISTA 4
+========================= -->
+
+<section id="pista4" class="pantalla">
+
+<div class="pista-contenedor">
+
+    <div class="numero-pista">
+        ESTACIÓN IV
+    </div>
+
+    <h1 class="pista-titulo">
+        Donde lloré
+    </h1>
+
+    <div class="marco-media">
+        AQUÍ PUEDES PONER UNA FOTO O VIDEO DEL VIAJE
+    </div>
+
+    <p class="pista-texto">
+        Algunas canciones llegan porque alguien las busca.
+        <br><br>
+        Otras simplemente aparecen.
+        <br><br>
+        Esta llegó durante uno de nuestros viajes.
+        En un lugar cualquiera.
+        En un momento que no estaba planeado.
+        <br><br>
+        Y entonces sonó.
+        <br><br>
+        Era una canción que tú me habías dedicado.
+        Una canción que ya significaba mucho para mí.
+        Pero escucharla allí,
+        justamente allí,
+        hizo que todo se sintiera diferente.
+        <br><br>
+        Y lloré.
+        No porque estuviera triste.
+        Sino porque durante unos minutos
+        sentí que aquella canción había encontrado
+        exactamente el lugar donde tenía que sonar.
+        <br><br>
+        ¿Cuál era?
+    </p>
+
+    <div id="opciones4" class="opciones"></div>
+
+    <div id="intentos4" class="intentos"></div>
+
+    <div id="mensaje4" class="mensaje"></div>
+
+    <button class="boton"
+            onclick="volverAlMapa()">
+        Volver al mapa
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ÉXITO ESTACIONES
+========================= -->
+
+<section id="exito" class="pantalla">
+
+<div class="exito">
+
+    <div class="estrella">✦</div>
+
+    <h2 id="exitoTitulo">
+        Lo encontraste.
+    </h2>
+
+    <p id="exitoTexto"></p>
+
+    <div class="bolsita"
+         id="bolsitaTexto">
+    </div>
+
+    <div id="spotify"></div>
+
+    <button class="boton"
+            onclick="volverAlMapa()">
+        Continuar
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TESORO / CANCIÓN SECRETA
+========================= -->
+
+<section id="secreto" class="pantalla">
+
+<div class="pista-contenedor">
+
+    <div class="numero-pista">
+        EL TESORO ESCONDIDO
+    </div>
+
+    <h1 class="pista-titulo">
+        La última canción
+    </h1>
+
+    <div class="marco-media">
+        AQUÍ PUEDES PONER UNA FOTO ESPECIAL
+    </div>
+
+    <p class="pista-texto">
+        Has llegado hasta aquí.
+        <br><br>
+        Pero hay una última canción.
+        Esta no estaba marcada en el mapa.
+        Esta no tiene opciones.
+        <br><br>
+        Esta canción solamente deberías reconocerla tú.
+        <br><br>
+        Es la canción de nuestras cantadas
+        en el carro a todo pulmón.
+        Una de esas que no podía faltar
+        en nuestros momentos juntos.
+        <br><br>
+        Esta vez no quiero que elijas.
+        <br><br>
+        <strong>Escribe su nombre.</strong>
+    </p>
+
+    <input id="respuestaSecreta"
+           type="text"
+           placeholder="Escribe aquí la canción"
+           style="
+           width:100%;
+           padding:16px;
+           background:#091326;
+           border:1px solid #263652;
+           color:#f7edc9;
+           border-radius:6px;
+           font-family:Montserrat;
+           margin-bottom:15px;
+           text-align:center;
+           ">
+
+    <div id="mensajeSecreto"
+         class="mensaje">
+    </div>
+
+    <button class="boton"
+            onclick="revisarSecreta()">
+        Descubrir el tesoro
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section id="final" class="pantalla">
+
+<div class="final">
+
+    <div class="luna"></div>
+
+    <h1>Encontraste el tesoro.</h1>
+
+    <p class="final-mensaje">
+        Dos años.
+        <br>
+        Miles de momentos.
+        <br>
+        Y todavía muchas canciones por cantar.
+    </p>
+
+    <div class="poema">
+
+        <!--
+        AQUÍ VAMOS A PONER TU POEMA FINAL.
+        NO LO CAMBIES TODAVÍA.
+        -->
+
+        Aquí irá nuestro poema.
+        <br><br>
+        Una parte de nuestra historia
+        escrita solamente para nosotros.
+
+    </div>
+
+    <p class="final-mensaje">
+
+        Por nuestros dos años.
+        <br><br>
+        Por todo lo que hemos vivido,
+        por todo lo que todavía nos falta
+        y por seguir eligiéndonos.
+        <br><br>
+
+        <strong>
+            Por los dos.
+        </strong>
+
+    </p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   DATOS
+========================= */
+
+const canciones = {
+
+    1:{
+        correcta:"Dembow",
+
+        opciones:[
+            "Dembow",
+            "La Playlist del Carro",
+            "Noche de Fiesta",
+            "Kilómetros"
+        ],
+
+        spotify:"https://open.spotify.com/track/1vVWWMHBcxdL4KZxDaiBSO",
+
+        mensaje:
+        "Esta canción no pertenece a un solo recuerdo. Pertenece a muchos kilómetros, muchas cantadas y muchos momentos nuestros."
+    },
+
+    2:{
+        correcta:"Congratulations",
+
+        opciones:[
+            "Congratulations",
+            "Mi Persona Favorita",
+            "Frente al Espejo",
+            "Contigo Siempre"
+        ],
+
+        spotify:"https://open.spotify.com/track/1OubIZ0ARYCUq5kceYUQiO",
+
+        mensaje:
+        "Hay momentos pequeños que terminan guardando sentimientos enormes. Este es uno de ellos."
+    },
+
+    3:{
+        correcta:"X19X",
+
+        opciones:[
+            "X19X",
+            "Diciembre",
+            "Nuestro Primer Concierto",
+            "Aquella Noche"
+        ],
+
+        spotify:"https://open.spotify.com/track/51CGbL9BAw1896waeHoR9w",
+
+        mensaje:
+        "Entre miles de personas y todo el ruido de aquella noche, hubo unas palabras que solamente nosotros dos necesitábamos escuchar."
+    },
+
+    4:{
+        correcta:"Golden Hour",
+
+        opciones:[
+            "Golden Hour",
+            "Sunset",
+            "La Más Preciosa",
+            "Aquella Canción"
+        ],
+
+        spotify:"https://open.spotify.com/track/5EbtodsuLbxrFDH6j5avVS",
+
+        mensaje:
+        "Hay canciones que se escuchan. Y hay canciones que parecen llegar en el momento exacto."
+    }
+
+};
+
+
+/* =========================
+   PROGRESO
+========================= */
+
+let progreso =
+    parseInt(localStorage.getItem("tesoro_progreso")) || 0;
+
+let intentos = {
+    1:0,
+    2:0,
+    3:0,
+    4:0
+};
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function irA(id){
+
+    document.querySelectorAll(".pantalla")
+    .forEach(p=>{
+        p.classList.remove("activa");
+    });
+
+    document.getElementById(id)
+    .classList.add("activa");
+
+    window.scrollTo(0,0);
+}
+
+
+function volverAlMapa(){
+
+    dibujarMapa();
+
+    irA("mapa");
+}
+
+
+/* =========================
+   MAPA
+========================= */
+
+function dibujarMapa(){
+
+    for(let i=1;i<=4;i++){
+
+        const estacion =
+            document.getElementById("estacion"+i);
+
+        if(i <= progreso + 1){
+
+            estacion.classList.remove(
+                "estacion-bloqueada"
+            );
+
+        }else{
+
+            estacion.classList.add(
+                "estacion-bloqueada"
             );
 
         }
 
-    </script>
+    }
+}
 
 
+/* =========================
+   ABRIR ESTACIÓN
+========================= */
+
+function tocarEstacion(numero){
+
+    if(numero > progreso + 1){
+
+        return;
+
+    }
+
+    intentos[numero] = 0;
+
+    document.getElementById(
+        "mensaje"+numero
+    ).innerText = "";
+
+    prepararOpciones(numero);
+
+    actualizarIntentos(numero);
+
+    irA("pista"+numero);
+}
+
+
+/* =========================
+   OPCIONES
+========================= */
+
+function prepararOpciones(numero){
+
+    const contenedor =
+        document.getElementById(
+            "opciones"+numero
+        );
+
+    contenedor.innerHTML="";
+
+    let opciones =
+        [...canciones[numero].opciones];
+
+    opciones.sort(()=>Math.random()-0.5);
+
+    opciones.forEach(opcion=>{
+
+        const boton =
+            document.createElement("button");
+
+        boton.className="opcion";
+
+        boton.innerText=opcion;
+
+        boton.onclick=()=>{
+            revisarOpcion(numero,opcion,boton);
+        };
+
+        contenedor.appendChild(boton);
+
+    });
+}
+
+
+/* =========================
+   REVISAR RESPUESTA
+========================= */
+
+function revisarOpcion(numero, respuesta, boton){
+
+    intentos[numero]++;
+
+    const correcta =
+        canciones[numero].correcta;
+
+    if(respuesta === correcta){
+
+        resolverPista(numero);
+
+        return;
+    }
+
+    boton.disabled=true;
+
+    if(intentos[numero] >= 3){
+
+        document.getElementById(
+            "mensaje"+numero
+        ).innerText =
+        "La respuesta era: "+correcta;
+
+        resolverPista(numero);
+
+    }else{
+
+        document.getElementById(
+            "mensaje"+numero
+        ).innerText =
+        "No es esa. Todavía tienes otra oportunidad.";
+
+        actualizarIntentos(numero);
+
+    }
+
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+function actualizarIntentos(numero){
+
+    const restantes =
+        3 - intentos[numero];
+
+    document.getElementById(
+        "intentos"+numero
+    ).innerText =
+    "Oportunidades restantes: "+restantes;
+
+}
+
+
+/* =========================
+   RESOLVER
+========================= */
+
+function resolverPista(numero){
+
+    if(progreso < numero){
+
+        progreso=numero;
+
+        localStorage.setItem(
+            "tesoro_progreso",
+            progreso
+        );
+
+    }
+
+    document.getElementById(
+        "exitoTitulo"
+    ).innerText =
+    "Lo encontraste.";
+
+    document.getElementById(
+        "exitoTexto"
+    ).innerText =
+    canciones[numero].mensaje;
+
+    document.getElementById(
+        "bolsitaTexto"
+    ).innerText =
+    "Ya puedes abrir la bolsita #"+numero;
+
+    document.getElementById(
+        "spotify"
+    ).innerHTML =
+    `<a class="spotify"
+        href="${canciones[numero].spotify}"
+        target="_blank">
+        Escuchar la canción
+     </a>`;
+
+    irA("exito");
+}
+
+
+/* =========================
+   TESORO
+========================= */
+
+function tocarTesoro(){
+
+    if(progreso >= 4){
+
+        irA("secreto");
+
+    }
+
+}
+
+
+/* =========================
+   CANCIÓN SECRETA
+========================= */
+
+function revisarSecreta(){
+
+    const entrada =
+        document.getElementById(
+            "respuestaSecreta"
+        ).value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"");
+
+    const correcta =
+        "y el mismo aire"
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"");
+
+    if(entrada === correcta){
+
+        progreso=5;
+
+        localStorage.setItem(
+            "tesoro_progreso",
+            progreso
+        );
+
+        irA("final");
+
+    }else{
+
+        document.getElementById(
+            "mensajeSecreto"
+        ).innerText =
+        "Todavía no. Piensa en nuestras cantadas en el carro.";
+
+    }
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+window.onload=function(){
+
+    dibujarMapa();
+
+};
+
+</script>
 </body>
-
 </html>
