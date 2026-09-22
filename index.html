@@ -770,12 +770,12 @@ button {
     </div>
 
 
-    <!-- TEXTO NUEVO -->
+    <!-- TEXTO -->
 
     <div class="map-text">
 
       <p>
-        Qué lindo saber que la música nos ha acompañado y hoy quiero honrar todo el amor y lo que hemos construido con este lindo detalle, ojalá te encante tanto como a mí me ha encantado hacerlo. Felices 2 años, mi vida. Feliz aniversario.
+        Qué lindo saber que la música nos ha acompañado y hoy quiero honrar todo el amor y lo que hemos construido con este lindo detalle, ojalá te encante tanto como a mí me ha encantado hacerlo, felices 2 años, mi vida, feliz aniversario.
       </p>
 
     </div>
@@ -848,7 +848,7 @@ button {
       <strong id="letterMessage"></strong>
     </p>
 
-    <a
+    
       id="spotifyButton"
       class="spotify"
       href="#"
@@ -1041,9 +1041,9 @@ button {
         <strong>Ya puedes abrir la carta número cinco.</strong>
       </p>
 
-      <a
+      
         class="spotify"
-        href="https://open.spotify.com/track/30LBoQSk8gjcN0hWCWtdbF"
+        href="https://open.spotify.com/track/5EbtodsuLbxrFDH6j5avVS"
         target="_blank"
         rel="noopener noreferrer">
 
@@ -1056,6 +1056,26 @@ button {
   </div>
 
 </section>
+
+
+<!-- =====================================================
+     AUDIOS OPCIONALES (beat al acertar)
+     ------------------------------------------------
+     Si quieres que suene un pedacito real de cada
+     canción al acertar, sube tus propios archivos de
+     audio (cortos, mp3) a una carpeta "assets" junto
+     al index.html, con estos nombres exactos, o cambia
+     el "src" de cada línea por el nombre que uses.
+
+     Si no subes ningún archivo, no pasa nada: sonará
+     el sonido original (la campanita) como hasta ahora.
+===================================================== -->
+
+<audio id="beat1" preload="none" src="assets/dembow.mp3"></audio>
+<audio id="beat2" preload="none" src="assets/congratulations.mp3"></audio>
+<audio id="beat3" preload="none" src="assets/x19x.mp3"></audio>
+<audio id="beat4" preload="none" src="assets/golden-hour.mp3"></audio>
+<audio id="beat5" preload="none" src="assets/el-mismo-aire.mp3"></audio>
 
 
 <script>
@@ -1094,7 +1114,7 @@ cantando a todo pulmón.`,
       "Hay canciones que no pertenecen a un recuerdo. Pertenecen a una época entera de nuestra historia.",
 
     spotify:
-      "https://open.spotify.com/track/1vVWWMHBcxdL4KZxDaiBSO",
+      "https://open.spotify.com/track/30LBoQSk8gjcN0hWCWtdbF",
 
     carta:
       "Ya puedes abrir la carta número 1."
@@ -1207,7 +1227,7 @@ De emoción.`,
       "Quién iba a pensar que, en un lugar cualquiera, iba a sonar precisamente esa canción.",
 
     spotify:
-      "https://open.spotify.com/track/5EbtodsuLbxrFDH6j5avVS",
+      "https://open.spotify.com/track/1vVWWMHBcxdL4KZxDaiBSO",
 
     carta:
       "Ya puedes abrir la carta número 4."
@@ -1232,9 +1252,27 @@ let intentosFinal = 0;
 
 /* =====================================================
    MOSTRAR PANTALLA
+   ------------------------------------------------
+   Aquí se blinda el candado: pase lo que pase en el
+   resto del código, nunca se puede mostrar una estación,
+   el último tesoro o el final si el progreso guardado
+   todavía no lo permite. Si algo intenta saltarse el
+   orden, esta función lo manda de vuelta al mapa.
 ===================================================== */
 
 function mostrar(id) {
+
+  if (id === "estacion" && progreso < estacionActual - 1) {
+    id = "mapa";
+  }
+
+  if ((id === "ultimo" || id === "quinta") && progreso < 4) {
+    id = "mapa";
+  }
+
+  if (id === "final" && progreso < 5) {
+    id = "mapa";
+  }
 
   document.querySelectorAll(".screen").forEach(screen => {
     screen.classList.remove("active");
@@ -1408,7 +1446,7 @@ function comprobar() {
 
   if (respuesta === correcta) {
 
-    celebrar();
+    sonarAcierto(estacionActual);
 
 
     /*
@@ -1608,7 +1646,7 @@ function comprobarFinal() {
 
   if (respuesta === correcta) {
 
-    celebrar();
+    sonarAcierto(5);
 
 
     progreso = 5;
@@ -1669,6 +1707,40 @@ function comprobarFinal() {
 function mostrarFinalDesbloqueado() {
 
   mostrar("final");
+}
+
+
+/* =====================================================
+   SONIDO AL ACERTAR
+   ------------------------------------------------
+   Intenta reproducir el beat real de la estación
+   (el <audio> correspondiente). Si no existe el
+   archivo, o el navegador no puede reproducirlo,
+   cae automáticamente en la campanita original.
+===================================================== */
+
+function sonarAcierto(numero) {
+
+  const audio =
+    document.getElementById("beat" + numero);
+
+  if (audio) {
+
+    audio.currentTime = 0;
+
+    const intento = audio.play();
+
+    if (intento && intento.catch) {
+
+      intento.catch(() => {
+        celebrar();
+      });
+
+      return;
+    }
+  }
+
+  celebrar();
 }
 
 
