@@ -150,12 +150,6 @@ button {
   margin-bottom: 5px;
 }
 
-.map-subtitle {
-  max-width: 700px;
-  margin: 0 auto 25px;
-  line-height: 1.7;
-}
-
 .map-art {
   position: relative;
   width: 100%;
@@ -163,6 +157,14 @@ button {
   overflow: hidden;
   border-radius: 30px;
   border: 1px solid rgba(255,255,255,.22);
+
+  /*
+    Cuando subas tu imagen creada con IA,
+    puedes cambiar este fondo por:
+
+    background-image: url("mapa.jpg");
+  */
+
   background:
     radial-gradient(circle at 17% 25%, #ffd766 0 5%, transparent 6%),
     radial-gradient(circle at 82% 16%, rgba(255,255,255,.95) 0 1px, transparent 2px),
@@ -170,10 +172,14 @@ button {
     radial-gradient(circle at 90% 32%, rgba(255,255,255,.8) 0 1px, transparent 2px),
     radial-gradient(circle at 61% 12%, rgba(255,255,255,.8) 0 1px, transparent 2px),
     linear-gradient(to bottom, #111d35 0%, #294566 46%, #d99d5b 67%, #c99b52 100%);
+
+  background-size: cover;
+  background-position: center;
+
   box-shadow: 0 25px 70px rgba(0,0,0,.35);
 }
 
-/* Sun and moon */
+/* Sun */
 
 .map-art::before {
   content: "";
@@ -187,6 +193,8 @@ button {
   box-shadow: 0 0 65px rgba(255,210,80,.55);
 }
 
+/* Moon */
+
 .map-art::after {
   content: "";
   position: absolute;
@@ -199,7 +207,7 @@ button {
   box-shadow: 0 0 45px rgba(244,233,200,.35);
 }
 
-/* landscape */
+/* Landscape */
 
 .mountain {
   position: absolute;
@@ -228,10 +236,22 @@ button {
   width: 100%;
   height: 135px;
   background: linear-gradient(to top, #1b1716, rgba(43,39,34,.85));
-  clip-path: polygon(0 38%, 12% 25%, 22% 40%, 34% 19%, 46% 35%, 60% 20%, 74% 39%, 86% 23%, 100% 35%, 100% 100%, 0 100%);
+  clip-path: polygon(
+    0 38%,
+    12% 25%,
+    22% 40%,
+    34% 19%,
+    46% 35%,
+    60% 20%,
+    74% 39%,
+    86% 23%,
+    100% 35%,
+    100% 100%,
+    0 100%
+  );
 }
 
-/* subtle path */
+/* Path */
 
 .path {
   position: absolute;
@@ -244,7 +264,7 @@ button {
   border-radius: 50%;
 }
 
-/* station buttons */
+/* Stations */
 
 .station {
   position: absolute;
@@ -275,10 +295,44 @@ button {
   font-size: 25px;
 }
 
-.s1 { left: 11%; top: 52%; }
-.s2 { left: 38%; top: 30%; }
-.s3 { right: 28%; top: 55%; }
-.s4 { right: 8%; top: 36%; }
+.s1 {
+  left: 11%;
+  top: 52%;
+}
+
+.s2 {
+  left: 38%;
+  top: 30%;
+}
+
+.s3 {
+  right: 28%;
+  top: 55%;
+}
+
+.s4 {
+  right: 8%;
+  top: 36%;
+}
+
+/* Fifth station */
+
+.s5 {
+  right: 42%;
+  bottom: 10%;
+  width: 75px;
+  height: 75px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 28px;
+  background: rgba(15,17,23,.9);
+}
+
+.s5 .station-number {
+  font-size: 30px;
+}
+
+/* Map text */
 
 .map-text {
   max-width: 730px;
@@ -413,6 +467,34 @@ button {
   border-radius: 30px;
 }
 
+/* ---------------- LAST TREASURE INTRO ---------------- */
+
+#ultimo {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(235,188,61,.22), transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(62,80,130,.22), transparent 30%),
+    #0b0e16;
+}
+
+.last-symbol {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+/* ---------------- FIFTH RIDDLE ---------------- */
+
+#quinta {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(235,188,61,.18), transparent 30%),
+    #0b0e16;
+}
+
+.final-text {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.9;
+}
+
 /* ---------------- FINAL ---------------- */
 
 #final {
@@ -422,18 +504,7 @@ button {
     #0b0e16;
 }
 
-.final-star {
-  font-size: 65px;
-  margin-bottom: 20px;
-}
-
-.final-text {
-  max-width: 600px;
-  margin: auto;
-  line-height: 1.9;
-}
-
-/* mobile */
+/* ---------------- MOBILE ---------------- */
 
 @media(max-width:600px) {
 
@@ -470,6 +541,13 @@ button {
     top: 35%;
   }
 
+  .s5 {
+    right: 39%;
+    bottom: 8%;
+    width: 65px;
+    height: 65px;
+  }
+
   .answer-box {
     flex-direction: column;
   }
@@ -483,11 +561,12 @@ button {
 
 <body>
 
-<!-- =========================
+<!-- =====================================================
      PAGE 1
-========================= -->
+===================================================== -->
 
 <section id="inicio" class="screen active">
+
   <div class="card">
 
     <div class="sun"></div>
@@ -497,6 +576,7 @@ button {
     <h1>Nuestra segunda<br>vuelta al sol</h1>
 
     <div class="intro">
+
       <p>
         Hoy se cumplen 730 días desde que tomamos la decisión de amarnos cada día.
       </p>
@@ -511,7 +591,10 @@ button {
         con algunas de las cosas que me has enseñado y de todo lo que hemos vivido juntos.
       </p>
 
-      <p><strong>Te amo, Juanjito.</strong></p>
+      <p>
+        <strong>Te amo, Juanjito.</strong>
+      </p>
+
     </div>
 
     <button class="primary-btn" onclick="mostrar('instrucciones')">
@@ -519,14 +602,16 @@ button {
     </button>
 
   </div>
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 2
-========================= -->
+===================================================== -->
 
 <section id="instrucciones" class="screen">
+
   <div class="card">
 
     <div class="small">Carta de instrucciones</div>
@@ -573,7 +658,7 @@ button {
       </p>
 
       <p>
-        El siguiente no se desbloqueará hasta que logres encontrar el primero.
+        El siguiente no se desbloqueará hasta que logres encontrar el anterior.
       </p>
 
       <p>
@@ -584,7 +669,9 @@ button {
         Buena suerte, mi vida.
       </p>
 
-      <p><strong>Te amo.</strong></p>
+      <p>
+        <strong>Te amo.</strong>
+      </p>
 
     </div>
 
@@ -593,12 +680,13 @@ button {
     </button>
 
   </div>
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 3 MAP
-========================= -->
+===================================================== -->
 
 <section id="mapa" class="screen">
 
@@ -615,65 +703,91 @@ button {
       <div class="path"></div>
       <div class="horizon"></div>
 
-      <button id="station1" class="station s1" onclick="abrirEstacion(1)">
+
+      <!-- STATION 1 -->
+
+      <button
+        id="station1"
+        class="station s1"
+        onclick="abrirEstacion(1)">
+
         <span class="station-number">I</span>
         El comienzo
+
       </button>
 
-      <button id="station2" class="station s2" onclick="abrirEstacion(2)">
+
+      <!-- STATION 2 -->
+
+      <button
+        id="station2"
+        class="station s2"
+        onclick="abrirEstacion(2)">
+
         <span class="station-number">II</span>
         Otro recuerdo
+
       </button>
 
-      <button id="station3" class="station s3" onclick="abrirEstacion(3)">
+
+      <!-- STATION 3 -->
+
+      <button
+        id="station3"
+        class="station s3"
+        onclick="abrirEstacion(3)">
+
         <span class="station-number">III</span>
         Una noche
+
       </button>
 
-      <button id="station4" class="station s4" onclick="abrirEstacion(4)">
+
+      <!-- STATION 4 -->
+
+      <button
+        id="station4"
+        class="station s4"
+        onclick="abrirEstacion(4)">
+
         <span class="station-number">IV</span>
         Un momento
+
+      </button>
+
+
+      <!-- STATION 5 -->
+
+      <button
+        id="station5"
+        class="station s5"
+        onclick="abrirUltimoTesoro()">
+
+        ✦
+
       </button>
 
     </div>
 
+
+    <!-- TEXTO NUEVO -->
+
     <div class="map-text">
 
       <p>
-        Qué gran valor tiene la música y, aunque para mí es importante,
-        sé que lo es mucho más para ti.
-      </p>
-
-      <p>
-        Desde hace dos años he aprendido a guardar recuerdos en canciones,
-        y no solo porque son lindas, sino porque son una memoria de todo lo que
-        hemos construido y vivido juntos.
-        Y qué mejor manera de recordar nuestras chocoaventuras que con algo tan hermoso como es la música.
-      </p>
-
-      <p>
-        Tú eres mis días de chocolate y sol, pero también eres todas esas noches
-        en las que el cielo se ve estrellado y azulito, esas que nos gustan tanto mirar.
-      </p>
-
-      <p>
-        Y entre canciones y recuerdos, escondí cinco pedacitos de nuestra historia.
-      </p>
-
-      <p>
-        <strong>El primero está en el mapa.<br>
-        Los demás tendrás que encontrarlos.</strong>
+        Qué lindo saber que la música nos ha acompañado y hoy quiero honrar todo el amor y lo que hemos construido con este lindo detalle, ojalá te encante tanto como a mí me ha encantado hacerlo. Felices 2 años, mi vida. Feliz aniversario.
       </p>
 
     </div>
 
   </div>
+
 </section>
 
 
-<!-- =========================
-     SONG STATION
-========================= -->
+<!-- =====================================================
+     SONG STATION 1-4
+===================================================== -->
 
 <section id="estacion" class="screen">
 
@@ -714,9 +828,9 @@ button {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CORRECT
-========================= -->
+===================================================== -->
 
 <section id="correcto" class="screen">
 
@@ -734,16 +848,23 @@ button {
       <strong id="letterMessage"></strong>
     </p>
 
-    <a id="spotifyButton"
-       class="spotify"
-       href="#"
-       target="_blank"
-       rel="noopener noreferrer">
-       Escuchar nuestra canción
+    <a
+      id="spotifyButton"
+      class="spotify"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      Escuchar nuestra canción
+
     </a>
 
-    <button class="secondary-btn" onclick="volverDespuesDeCorrecto()">
+    <button
+      class="secondary-btn"
+      onclick="volverDespuesDeCorrecto()">
+
       Volver al mapa
+
     </button>
 
   </div>
@@ -751,54 +872,101 @@ button {
 </section>
 
 
-<!-- =========================
-     FINAL FIFTH SONG
-========================= -->
+<!-- =====================================================
+     LAST TREASURE INTRO
+===================================================== -->
 
-<section id="final" class="screen">
+<section id="ultimo" class="screen">
 
   <div class="card">
 
-    <div class="final-star">✦</div>
+    <div class="last-symbol">✦</div>
 
-    <div class="small">El último pedacito</div>
+    <div class="small">Última estación</div>
 
-    <h2>El mismo aire</h2>
+    <h2>El último tesoro</h2>
 
-    <div class="final-text">
+    <p class="final-text">
 
-      <p>
-        No necesito escenario.
-        No necesito miles de personas.
-        Ni siquiera necesito que alguien más conozca la canción.
-      </p>
+      Has llegado al último pedacito de nuestra historia.
 
-      <p>
-        Solo necesito cuatro ruedas, algunas noches y dos personas
-        dispuestas a cantar como si fueran dos despechados.
-      </p>
+      <br><br>
 
-      <p>
-        En este recuerdo hay personajes, un tapete
-        y algo que mide el paso del tiempo.
-      </p>
+      Pero este es diferente.
 
-      <p>
-        Hemos convertido este lugar en escenario, karaoke, teatro
-        y quién sabe cuántas cosas más.
-      </p>
+      <br><br>
 
-      <p>
-        Y aunque probablemente nadie nos haya pedido semejante espectáculo...
-        <br><br>
-        <strong>nunca podía faltar.</strong>
-      </p>
+      No voy a decirte qué canción es.
+      Tendrás que encontrarla.
+
+    </p>
+
+    <button
+      class="primary-btn"
+      onclick="mostrarQuinta()">
+
+      Encontrar el último pedacito
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FIFTH RIDDLE
+===================================================== -->
+
+<section id="quinta" class="screen">
+
+  <div class="song-card">
+
+    <div class="station-label">
+      ÚLTIMO TESORO
+    </div>
+
+    <div class="riddle">
+
+      No necesito escenario.
+      No necesito miles de personas.
+
+      Solo cuatro ruedas,
+      algunas noches
+      y dos personas dispuestas
+      a cantar como si fueran dos despechados.
+
+      En este recuerdo hay personajes,
+      un tapete
+      y algo que mide el paso del tiempo.
+
+      Hemos convertido este lugar
+      en escenario, karaoke, teatro
+      y quién sabe cuántas cosas más.
+
+      Y aunque probablemente nadie
+      nos haya pedido semejante espectáculo...
+
+      <strong>nunca podía faltar.</strong>
 
     </div>
 
-    <p style="margin-top:35px;">
+
+    <div class="keywords">
+
+      <span class="keyword">carro</span>
+      <span class="keyword">karaoke</span>
+      <span class="keyword">personajes</span>
+      <span class="keyword">tapete</span>
+      <span class="keyword">reloj</span>
+
+    </div>
+
+
+    <p>
       <strong>¿Qué canción era nuestra?</strong>
     </p>
+
 
     <div class="answer-box">
 
@@ -816,7 +984,74 @@ button {
 
     </div>
 
+    <div id="finalAttempts" class="attempts">
+      Intentos: 3 disponibles
+    </div>
+
     <div id="finalMessage" class="message"></div>
+
+    <button
+      class="secondary-btn"
+      onclick="mostrar('mapa')">
+
+      Volver al mapa
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section id="final" class="screen">
+
+  <div class="card">
+
+    <div class="final-star">✦</div>
+
+    <div class="small">
+      El último pedacito de nosotros
+    </div>
+
+    <h2>El mismo aire</h2>
+
+    <div class="final-text">
+
+      <p>
+        Gracias por todas las aventuras que hemos vivido.
+      </p>
+
+      <p>
+        Hoy quiero seguir creando muchos más recuerdos contigo,
+        seguir encontrando canciones que algún día nos hagan volver
+        a un momento, a un lugar o a una emoción,
+        y poder llenarme de emoción cada vez que las escuchemos
+        y recordemos todo lo que hemos vivido juntos.
+      </p>
+
+      <p>
+        Te amo, mi chiquitín hermoso.
+      </p>
+
+      <p>
+        <strong>Ya puedes abrir la carta número cinco.</strong>
+      </p>
+
+      <a
+        class="spotify"
+        href="https://open.spotify.com/track/30LBoQSk8gjcN0hWCWtdbF"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        Escuchar nuestra última canción
+
+      </a>
+
+    </div>
 
   </div>
 
@@ -826,12 +1061,13 @@ button {
 <script>
 
 /* =====================================================
-   DATOS DE LAS CINCO CANCIONES
+   CANCIONES
 ===================================================== */
 
 const canciones = {
 
   1: {
+
     titulo: "Dembow",
 
     riddle: `No tengo un solo lugar donde vivir.
@@ -866,6 +1102,7 @@ cantando a todo pulmón.`,
 
 
   2: {
+
     titulo: "Congratulations",
 
     riddle: `Hay recuerdos que caben
@@ -899,6 +1136,7 @@ que todavía no sabíamos cuánto iba a crecer.`,
 
 
   3: {
+
     titulo: "X19X",
 
     riddle: `Hay noches que se quedan
@@ -934,6 +1172,7 @@ nunca volviera a ser la misma.`,
 
 
   4: {
+
     titulo: "Golden Hour",
 
     riddle: `Hay canciones que uno busca.
@@ -981,13 +1220,18 @@ De emoción.`,
    VARIABLES
 ===================================================== */
 
-let progreso = Number(localStorage.getItem("tesoro_progreso")) || 0;
+let progreso =
+  Number(localStorage.getItem("tesoro_progreso")) || 0;
+
 let estacionActual = 1;
+
 let intentos = 0;
+
+let intentosFinal = 0;
 
 
 /* =====================================================
-   MOSTRAR PANTALLAS
+   MOSTRAR PANTALLA
 ===================================================== */
 
 function mostrar(id) {
@@ -996,62 +1240,125 @@ function mostrar(id) {
     screen.classList.remove("active");
   });
 
-  document.getElementById(id).classList.add("active");
+  const pantalla = document.getElementById(id);
+
+  if (pantalla) {
+    pantalla.classList.add("active");
+  }
 
   actualizarMapa();
 }
 
 
 /* =====================================================
-   MAPA
+   ACTUALIZAR MAPA
 ===================================================== */
 
 function actualizarMapa() {
 
+  /*
+    Estación 1:
+    siempre disponible.
+
+    Estación 2:
+    solo después de acertar la 1.
+
+    Estación 3:
+    solo después de acertar la 2.
+
+    Estación 4:
+    solo después de acertar la 3.
+
+    Estación 5:
+    solo después de acertar la 4.
+  */
+
   for (let i = 1; i <= 4; i++) {
 
-    const boton = document.getElementById("station" + i);
+    const boton =
+      document.getElementById("station" + i);
 
     if (boton) {
-      boton.disabled = progreso < i - 1;
+
+      boton.disabled =
+        progreso < i - 1;
+
     }
+  }
+
+
+  const quinta =
+    document.getElementById("station5");
+
+  if (quinta) {
+
+    quinta.disabled =
+      progreso < 4;
+
   }
 }
 
 
+/* =====================================================
+   ABRIR ESTACIÓN 1-4
+===================================================== */
+
 function abrirEstacion(numero) {
+
+  /*
+    Nunca se puede abrir una estación
+    si la anterior no está completada.
+  */
 
   if (progreso < numero - 1) {
     return;
   }
 
   estacionActual = numero;
+
   intentos = 0;
 
-  const cancion = canciones[numero];
+  const cancion =
+    canciones[numero];
+
 
   document.getElementById("stationLabel").textContent =
     "Estación " + numero + " · encuentra la canción";
 
+
   document.getElementById("riddle").textContent =
     cancion.riddle;
 
+
   document.getElementById("keywords").innerHTML =
     cancion.keywords
-      .map(word => `<span class="keyword">${word}</span>`)
+      .map(word =>
+        `<span class="keyword">${word}</span>`
+      )
       .join("");
+
 
   document.getElementById("attempts").textContent =
     "Intentos: 3 disponibles";
 
-  document.getElementById("message").textContent = "";
 
-  document.getElementById("answer").value = "";
+  document.getElementById("message").textContent =
+    "";
+
+
+  const input =
+    document.getElementById("answer");
+
+  input.value = "";
+
+  input.disabled = false;
+
 
   mostrar("estacion");
 
+
   setTimeout(() => {
-    document.getElementById("answer").focus();
+    input.focus();
   }, 200);
 }
 
@@ -1072,38 +1379,68 @@ function normalizar(texto) {
 
 
 /* =====================================================
-   COMPROBAR CANCIONES 1-4
+   COMPROBAR ESTACIONES 1-4
 ===================================================== */
 
 function comprobar() {
 
-  const input = document.getElementById("answer");
-  const respuesta = normalizar(input.value);
+  const input =
+    document.getElementById("answer");
+
+  const respuesta =
+    normalizar(input.value);
+
 
   if (!respuesta) {
+
     document.getElementById("message").textContent =
       "Escribe una respuesta primero.";
+
     return;
   }
 
-  const correcta = normalizar(canciones[estacionActual].titulo);
+
+  const correcta =
+    normalizar(
+      canciones[estacionActual].titulo
+    );
+
 
   if (respuesta === correcta) {
 
     celebrar();
 
+
+    /*
+      Solo avanzamos UNA estación.
+
+      Ejemplo:
+      si estaba en 1 → progreso pasa a 1.
+      si estaba en 2 → progreso pasa a 2.
+      etc.
+    */
+
     if (progreso < estacionActual) {
+
       progreso = estacionActual;
-      localStorage.setItem("tesoro_progreso", progreso);
+
+      localStorage.setItem(
+        "tesoro_progreso",
+        progreso
+      );
     }
 
+
     mostrarCorrecto(estacionActual);
+
 
   } else {
 
     intentos++;
 
-    const restantes = 3 - intentos;
+    const restantes =
+      3 - intentos;
+
 
     if (restantes > 0) {
 
@@ -1114,7 +1451,9 @@ function comprobar() {
         "No es esa... piensa en nuestros recuerdos.";
 
       input.value = "";
+
       input.focus();
+
 
     } else {
 
@@ -1122,84 +1461,203 @@ function comprobar() {
         "Se acabaron tus tres intentos.";
 
       document.getElementById("message").textContent =
-        "Esta estación tendrá que esperar. Vuelve al mapa cuando quieras continuar.";
+        "Esta estación tendrá que esperar. Puedes volver al mapa e intentarlo nuevamente.";
 
       input.disabled = true;
+
     }
   }
 }
 
 
 /* =====================================================
-   PANTALLA CORRECTA
+   PANTALLA DE CANCIÓN CORRECTA
 ===================================================== */
 
 function mostrarCorrecto(numero) {
 
-  const cancion = canciones[numero];
+  const cancion =
+    canciones[numero];
+
 
   document.getElementById("successStation").textContent =
     "ESTACIÓN " + numero + " DESBLOQUEADA";
 
+
   document.getElementById("successTitle").textContent =
     cancion.titulo;
+
 
   document.getElementById("successMessage").textContent =
     cancion.mensaje;
 
+
   document.getElementById("letterMessage").textContent =
     cancion.carta;
 
+
   document.getElementById("spotifyButton").href =
     cancion.spotify;
+
 
   mostrar("correcto");
 }
 
 
 /* =====================================================
-   VOLVER AL MAPA
+   VOLVER AL MAPA DESPUÉS DE ACERTAR
 ===================================================== */
 
 function volverDespuesDeCorrecto() {
 
-  if (progreso >= 4) {
-    mostrar("final");
-  } else {
-    mostrar("mapa");
-  }
+  /*
+    IMPORTANTE:
+
+    Nunca mandamos automáticamente
+    a la quinta canción.
+
+    Siempre vuelve al mapa.
+
+    El mapa decide qué estaciones están
+    desbloqueadas según "progreso".
+  */
+
+  mostrar("mapa");
 }
 
 
 /* =====================================================
-   QUINTA CANCIÓN
+   ABRIR ÚLTIMO TESORO
+===================================================== */
+
+function abrirUltimoTesoro() {
+
+  /*
+    La quinta estación solamente existe
+    después de completar las primeras cuatro.
+  */
+
+  if (progreso < 4) {
+    return;
+  }
+
+  mostrar("ultimo");
+}
+
+
+/* =====================================================
+   MOSTRAR QUINTA PISTA
+===================================================== */
+
+function mostrarQuinta() {
+
+  if (progreso < 4) {
+    mostrar("mapa");
+    return;
+  }
+
+  intentosFinal = 0;
+
+  document.getElementById("finalAnswer").value = "";
+
+  document.getElementById("finalAnswer").disabled = false;
+
+  document.getElementById("finalAttempts").textContent =
+    "Intentos: 3 disponibles";
+
+  document.getElementById("finalMessage").textContent =
+    "";
+
+  mostrar("quinta");
+
+  setTimeout(() => {
+
+    document
+      .getElementById("finalAnswer")
+      .focus();
+
+  }, 200);
+}
+
+
+/* =====================================================
+   COMPROBAR QUINTA CANCIÓN
 ===================================================== */
 
 function comprobarFinal() {
 
-  const input = document.getElementById("finalAnswer");
-  const respuesta = normalizar(input.value);
+  const input =
+    document.getElementById("finalAnswer");
 
-  const correcta = normalizar("El mismo aire");
+  const respuesta =
+    normalizar(input.value);
+
+
+  if (!respuesta) {
+
+    document.getElementById("finalMessage").textContent =
+      "Escribe una respuesta primero.";
+
+    return;
+  }
+
+
+  const correcta =
+    normalizar("El mismo aire");
+
 
   if (respuesta === correcta) {
 
     celebrar();
 
+
     progreso = 5;
-    localStorage.setItem("tesoro_progreso", progreso);
+
+    localStorage.setItem(
+      "tesoro_progreso",
+      progreso
+    );
+
 
     setTimeout(() => {
+
       mostrarFinalDesbloqueado();
+
     }, 400);
+
 
   } else {
 
-    document.getElementById("finalMessage").textContent =
-      "Todavía no... piensa en nuestras noches de karaoke.";
+    intentosFinal++;
 
-    input.value = "";
-    input.focus();
+    const restantes =
+      3 - intentosFinal;
+
+
+    if (restantes > 0) {
+
+      document.getElementById("finalAttempts").textContent =
+        `Intentos restantes: ${restantes}`;
+
+      document.getElementById("finalMessage").textContent =
+        "Todavía no... piensa en nuestras noches de karaoke.";
+
+      input.value = "";
+
+      input.focus();
+
+
+    } else {
+
+      document.getElementById("finalAttempts").textContent =
+        "Se acabaron tus tres intentos.";
+
+      document.getElementById("finalMessage").textContent =
+        "Puedes volver al mapa e intentarlo nuevamente cuando quieras.";
+
+      input.disabled = true;
+
+    }
   }
 }
 
@@ -1210,58 +1668,12 @@ function comprobarFinal() {
 
 function mostrarFinalDesbloqueado() {
 
-  document.getElementById("final").innerHTML = `
-
-    <div class="card">
-
-      <div class="final-star">✦</div>
-
-      <div class="small">El último pedacito de nosotros</div>
-
-      <h2>El mismo aire</h2>
-
-      <div class="final-text">
-
-        <p>
-          Gracias por todas las aventuras que hemos vivido.
-        </p>
-
-        <p>
-          Hoy quiero seguir creando muchos más recuerdos contigo,
-          seguir encontrando canciones que algún día nos hagan volver
-          a un momento, a un lugar o a una emoción,
-          y poder llenarme de emoción cada vez que las escuchemos
-          y recordemos todo lo que hemos vivido juntos.
-        </p>
-
-        <p>
-          Te amo, mi chiquitín hermoso.
-        </p>
-
-        <p>
-          <strong>Ya puedes abrir la carta número cinco.</strong>
-        </p>
-
-        <a
-          class="spotify"
-          href="https://open.spotify.com/track/30LBoQSk8gjcN0hWCWtdbF"
-          target="_blank"
-          rel="noopener noreferrer">
-          Escuchar nuestra última canción
-        </a>
-
-      </div>
-
-    </div>
-  `;
-
   mostrar("final");
 }
 
 
 /* =====================================================
-   SONIDO DE CELEBRACIÓN
-   Es un sonido original, no parte de ninguna canción.
+   SONIDO ORIGINAL DE CELEBRACIÓN
 ===================================================== */
 
 function celebrar() {
@@ -1269,54 +1681,98 @@ function celebrar() {
   try {
 
     const AudioContext =
-      window.AudioContext || window.webkitAudioContext;
+      window.AudioContext ||
+      window.webkitAudioContext;
 
-    const ctx = new AudioContext();
 
-    const ahora = ctx.currentTime;
+    const ctx =
+      new AudioContext();
+
+
+    const ahora =
+      ctx.currentTime;
+
 
     const notas = [
-      { frecuencia: 660, tiempo: 0 },
-      { frecuencia: 880, tiempo: .12 },
-      { frecuencia: 1046, tiempo: .24 }
+
+      {
+        frecuencia: 660,
+        tiempo: 0
+      },
+
+      {
+        frecuencia: 880,
+        tiempo: .12
+      },
+
+      {
+        frecuencia: 1046,
+        tiempo: .24
+      }
+
     ];
+
 
     notas.forEach(nota => {
 
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      const osc =
+        ctx.createOscillator();
+
+      const gain =
+        ctx.createGain();
+
 
       osc.type = "sine";
-      osc.frequency.value = nota.frecuencia;
 
-      gain.gain.setValueAtTime(0, ahora + nota.tiempo);
+      osc.frequency.value =
+        nota.frecuencia;
+
+
+      gain.gain.setValueAtTime(
+        0,
+        ahora + nota.tiempo
+      );
+
 
       gain.gain.linearRampToValueAtTime(
         0.12,
         ahora + nota.tiempo + .03
       );
 
+
       gain.gain.exponentialRampToValueAtTime(
         0.001,
         ahora + nota.tiempo + .35
       );
 
+
       osc.connect(gain);
+
       gain.connect(ctx.destination);
 
-      osc.start(ahora + nota.tiempo);
-      osc.stop(ahora + nota.tiempo + .4);
+
+      osc.start(
+        ahora + nota.tiempo
+      );
+
+      osc.stop(
+        ahora + nota.tiempo + .4
+      );
 
     });
 
   } catch (error) {
-    console.log("El sonido no pudo reproducirse.");
+
+    console.log(
+      "El sonido no pudo reproducirse."
+    );
+
   }
 }
 
 
 /* =====================================================
-   INICIAR MAPA
+   INICIAR
 ===================================================== */
 
 actualizarMapa();
