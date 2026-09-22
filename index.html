@@ -158,13 +158,6 @@ button {
   border-radius: 30px;
   border: 1px solid rgba(255,255,255,.22);
 
-  /*
-    Cuando subas tu imagen creada con IA,
-    puedes cambiar este fondo por:
-
-    background-image: url("mapa.jpg");
-  */
-
   background:
     radial-gradient(circle at 17% 25%, #ffd766 0 5%, transparent 6%),
     radial-gradient(circle at 82% 16%, rgba(255,255,255,.95) 0 1px, transparent 2px),
@@ -179,8 +172,6 @@ button {
   box-shadow: 0 25px 70px rgba(0,0,0,.35);
 }
 
-/* Sun */
-
 .map-art::before {
   content: "";
   position: absolute;
@@ -193,8 +184,6 @@ button {
   box-shadow: 0 0 65px rgba(255,210,80,.55);
 }
 
-/* Moon */
-
 .map-art::after {
   content: "";
   position: absolute;
@@ -206,8 +195,6 @@ button {
   top: 12%;
   box-shadow: 0 0 45px rgba(244,233,200,.35);
 }
-
-/* Landscape */
 
 .mountain {
   position: absolute;
@@ -251,8 +238,6 @@ button {
   );
 }
 
-/* Path */
-
 .path {
   position: absolute;
   left: 49%;
@@ -263,8 +248,6 @@ button {
   transform: rotate(8deg);
   border-radius: 50%;
 }
-
-/* Stations */
 
 .station {
   position: absolute;
@@ -315,8 +298,6 @@ button {
   top: 36%;
 }
 
-/* Fifth station */
-
 .s5 {
   right: 42%;
   bottom: 10%;
@@ -331,8 +312,6 @@ button {
 .s5 .station-number {
   font-size: 30px;
 }
-
-/* Map text */
 
 .map-text {
   max-width: 730px;
@@ -502,6 +481,11 @@ button {
     radial-gradient(circle at 50% 25%, rgba(235,188,61,.22), transparent 30%),
     radial-gradient(circle at 20% 80%, rgba(62,80,130,.22), transparent 30%),
     #0b0e16;
+}
+
+.final-star {
+  font-size: 70px;
+  margin-bottom: 20px;
 }
 
 /* ---------------- MOBILE ---------------- */
@@ -703,9 +687,6 @@ button {
       <div class="path"></div>
       <div class="horizon"></div>
 
-
-      <!-- STATION 1 -->
-
       <button
         id="station1"
         class="station s1"
@@ -715,9 +696,6 @@ button {
         El comienzo
 
       </button>
-
-
-      <!-- STATION 2 -->
 
       <button
         id="station2"
@@ -729,9 +707,6 @@ button {
 
       </button>
 
-
-      <!-- STATION 3 -->
-
       <button
         id="station3"
         class="station s3"
@@ -741,9 +716,6 @@ button {
         Una noche
 
       </button>
-
-
-      <!-- STATION 4 -->
 
       <button
         id="station4"
@@ -755,9 +727,6 @@ button {
 
       </button>
 
-
-      <!-- STATION 5 -->
-
       <button
         id="station5"
         class="station s5"
@@ -768,9 +737,6 @@ button {
       </button>
 
     </div>
-
-
-    <!-- TEXTO -->
 
     <div class="map-text">
 
@@ -848,7 +814,7 @@ button {
       <strong id="letterMessage"></strong>
     </p>
 
-    
+    <a
       id="spotifyButton"
       class="spotify"
       href="#"
@@ -951,7 +917,6 @@ button {
 
     </div>
 
-
     <div class="keywords">
 
       <span class="keyword">carro</span>
@@ -962,11 +927,9 @@ button {
 
     </div>
 
-
     <p>
       <strong>¿Qué canción era nuestra?</strong>
     </p>
-
 
     <div class="answer-box">
 
@@ -1041,7 +1004,7 @@ button {
         <strong>Ya puedes abrir la carta número cinco.</strong>
       </p>
 
-      
+      <a
         class="spotify"
         href="https://open.spotify.com/track/5EbtodsuLbxrFDH6j5avVS"
         target="_blank"
@@ -1056,26 +1019,6 @@ button {
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     AUDIOS OPCIONALES (beat al acertar)
-     ------------------------------------------------
-     Si quieres que suene un pedacito real de cada
-     canción al acertar, sube tus propios archivos de
-     audio (cortos, mp3) a una carpeta "assets" junto
-     al index.html, con estos nombres exactos, o cambia
-     el "src" de cada línea por el nombre que uses.
-
-     Si no subes ningún archivo, no pasa nada: sonará
-     el sonido original (la campanita) como hasta ahora.
-===================================================== -->
-
-<audio id="beat1" preload="none" src="assets/dembow.mp3"></audio>
-<audio id="beat2" preload="none" src="assets/congratulations.mp3"></audio>
-<audio id="beat3" preload="none" src="assets/x19x.mp3"></audio>
-<audio id="beat4" preload="none" src="assets/golden-hour.mp3"></audio>
-<audio id="beat5" preload="none" src="assets/el-mismo-aire.mp3"></audio>
 
 
 <script>
@@ -1252,12 +1195,6 @@ let intentosFinal = 0;
 
 /* =====================================================
    MOSTRAR PANTALLA
-   ------------------------------------------------
-   Aquí se blinda el candado: pase lo que pase en el
-   resto del código, nunca se puede mostrar una estación,
-   el último tesoro o el final si el progreso guardado
-   todavía no lo permite. Si algo intenta saltarse el
-   orden, esta función lo manda de vuelta al mapa.
 ===================================================== */
 
 function mostrar(id) {
@@ -1294,23 +1231,6 @@ function mostrar(id) {
 
 function actualizarMapa() {
 
-  /*
-    Estación 1:
-    siempre disponible.
-
-    Estación 2:
-    solo después de acertar la 1.
-
-    Estación 3:
-    solo después de acertar la 2.
-
-    Estación 4:
-    solo después de acertar la 3.
-
-    Estación 5:
-    solo después de acertar la 4.
-  */
-
   for (let i = 1; i <= 4; i++) {
 
     const boton =
@@ -1323,7 +1243,6 @@ function actualizarMapa() {
 
     }
   }
-
 
   const quinta =
     document.getElementById("station5");
@@ -1343,11 +1262,6 @@ function actualizarMapa() {
 
 function abrirEstacion(numero) {
 
-  /*
-    Nunca se puede abrir una estación
-    si la anterior no está completada.
-  */
-
   if (progreso < numero - 1) {
     return;
   }
@@ -1359,14 +1273,11 @@ function abrirEstacion(numero) {
   const cancion =
     canciones[numero];
 
-
   document.getElementById("stationLabel").textContent =
     "Estación " + numero + " · encuentra la canción";
 
-
   document.getElementById("riddle").textContent =
     cancion.riddle;
-
 
   document.getElementById("keywords").innerHTML =
     cancion.keywords
@@ -1375,14 +1286,11 @@ function abrirEstacion(numero) {
       )
       .join("");
 
-
   document.getElementById("attempts").textContent =
     "Intentos: 3 disponibles";
 
-
   document.getElementById("message").textContent =
     "";
-
 
   const input =
     document.getElementById("answer");
@@ -1391,9 +1299,7 @@ function abrirEstacion(numero) {
 
   input.disabled = false;
 
-
   mostrar("estacion");
-
 
   setTimeout(() => {
     input.focus();
@@ -1428,7 +1334,6 @@ function comprobar() {
   const respuesta =
     normalizar(input.value);
 
-
   if (!respuesta) {
 
     document.getElementById("message").textContent =
@@ -1437,26 +1342,14 @@ function comprobar() {
     return;
   }
 
-
   const correcta =
     normalizar(
       canciones[estacionActual].titulo
     );
 
-
   if (respuesta === correcta) {
 
-    sonarAcierto(estacionActual);
-
-
-    /*
-      Solo avanzamos UNA estación.
-
-      Ejemplo:
-      si estaba en 1 → progreso pasa a 1.
-      si estaba en 2 → progreso pasa a 2.
-      etc.
-    */
+    celebrar();
 
     if (progreso < estacionActual) {
 
@@ -1468,9 +1361,7 @@ function comprobar() {
       );
     }
 
-
     mostrarCorrecto(estacionActual);
-
 
   } else {
 
@@ -1478,7 +1369,6 @@ function comprobar() {
 
     const restantes =
       3 - intentos;
-
 
     if (restantes > 0) {
 
@@ -1491,7 +1381,6 @@ function comprobar() {
       input.value = "";
 
       input.focus();
-
 
     } else {
 
@@ -1517,26 +1406,20 @@ function mostrarCorrecto(numero) {
   const cancion =
     canciones[numero];
 
-
   document.getElementById("successStation").textContent =
     "ESTACIÓN " + numero + " DESBLOQUEADA";
-
 
   document.getElementById("successTitle").textContent =
     cancion.titulo;
 
-
   document.getElementById("successMessage").textContent =
     cancion.mensaje;
-
 
   document.getElementById("letterMessage").textContent =
     cancion.carta;
 
-
   document.getElementById("spotifyButton").href =
     cancion.spotify;
-
 
   mostrar("correcto");
 }
@@ -1547,19 +1430,6 @@ function mostrarCorrecto(numero) {
 ===================================================== */
 
 function volverDespuesDeCorrecto() {
-
-  /*
-    IMPORTANTE:
-
-    Nunca mandamos automáticamente
-    a la quinta canción.
-
-    Siempre vuelve al mapa.
-
-    El mapa decide qué estaciones están
-    desbloqueadas según "progreso".
-  */
-
   mostrar("mapa");
 }
 
@@ -1569,11 +1439,6 @@ function volverDespuesDeCorrecto() {
 ===================================================== */
 
 function abrirUltimoTesoro() {
-
-  /*
-    La quinta estación solamente existe
-    después de completar las primeras cuatro.
-  */
 
   if (progreso < 4) {
     return;
@@ -1630,7 +1495,6 @@ function comprobarFinal() {
   const respuesta =
     normalizar(input.value);
 
-
   if (!respuesta) {
 
     document.getElementById("finalMessage").textContent =
@@ -1639,15 +1503,12 @@ function comprobarFinal() {
     return;
   }
 
-
   const correcta =
     normalizar("El mismo aire");
 
-
   if (respuesta === correcta) {
 
-    sonarAcierto(5);
-
+    celebrar();
 
     progreso = 5;
 
@@ -1656,13 +1517,11 @@ function comprobarFinal() {
       progreso
     );
 
-
     setTimeout(() => {
 
       mostrarFinalDesbloqueado();
 
     }, 400);
-
 
   } else {
 
@@ -1670,7 +1529,6 @@ function comprobarFinal() {
 
     const restantes =
       3 - intentosFinal;
-
 
     if (restantes > 0) {
 
@@ -1683,7 +1541,6 @@ function comprobarFinal() {
       input.value = "";
 
       input.focus();
-
 
     } else {
 
@@ -1705,47 +1562,12 @@ function comprobarFinal() {
 ===================================================== */
 
 function mostrarFinalDesbloqueado() {
-
   mostrar("final");
 }
 
 
 /* =====================================================
-   SONIDO AL ACERTAR
-   ------------------------------------------------
-   Intenta reproducir el beat real de la estación
-   (el <audio> correspondiente). Si no existe el
-   archivo, o el navegador no puede reproducirlo,
-   cae automáticamente en la campanita original.
-===================================================== */
-
-function sonarAcierto(numero) {
-
-  const audio =
-    document.getElementById("beat" + numero);
-
-  if (audio) {
-
-    audio.currentTime = 0;
-
-    const intento = audio.play();
-
-    if (intento && intento.catch) {
-
-      intento.catch(() => {
-        celebrar();
-      });
-
-      return;
-    }
-  }
-
-  celebrar();
-}
-
-
-/* =====================================================
-   SONIDO ORIGINAL DE CELEBRACIÓN
+   SONIDO DE CELEBRACIÓN
 ===================================================== */
 
 function celebrar() {
@@ -1756,14 +1578,11 @@ function celebrar() {
       window.AudioContext ||
       window.webkitAudioContext;
 
-
     const ctx =
       new AudioContext();
 
-
     const ahora =
       ctx.currentTime;
-
 
     const notas = [
 
@@ -1784,7 +1603,6 @@ function celebrar() {
 
     ];
 
-
     notas.forEach(nota => {
 
       const osc =
@@ -1793,35 +1611,29 @@ function celebrar() {
       const gain =
         ctx.createGain();
 
-
       osc.type = "sine";
 
       osc.frequency.value =
         nota.frecuencia;
-
 
       gain.gain.setValueAtTime(
         0,
         ahora + nota.tiempo
       );
 
-
       gain.gain.linearRampToValueAtTime(
         0.12,
         ahora + nota.tiempo + .03
       );
-
 
       gain.gain.exponentialRampToValueAtTime(
         0.001,
         ahora + nota.tiempo + .35
       );
 
-
       osc.connect(gain);
 
       gain.connect(ctx.destination);
-
 
       osc.start(
         ahora + nota.tiempo
